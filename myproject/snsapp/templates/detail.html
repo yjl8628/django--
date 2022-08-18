@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>제목 : {{post_detail.title}}</h1>
+
+<h3>날짜 : {{post_detail.date}}</h3>
+<hr>
+<h3>본문</h3>
+<p>
+    {{ post_detail.body }}
+</p>
+<hr>
+
+<!--댓글 목록-->
+{% for comment in post_detail.comment_set.all %}
+    <p> {{comment}} </p>
+    <p>{{comment.date}}</p>
+    <hr>
+{% endfor %}
+
+<!--댓글 목록-->
+
+
+<form action="{% url 'new_comment' post_detail.id %}" method="POST">
+    {% csrf_token %}
+    {{comment_form}}
+    <input type="submit" value="댓글입력">
+</form>
+
+{% endblock %}

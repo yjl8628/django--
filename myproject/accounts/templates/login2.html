@@ -1,0 +1,124 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .login_wrap{position:relative;}
+        #login_f{
+        width:305px;
+        height:161px;
+        left:-110px;
+        top:-500px;
+        z-index:15;
+        padding:40px 0 0 30px;
+        }
+      .username, .password {position:relative;}
+      .user_id label, .user_pw label {position:absolute; top:3px; left:1px;}
+      .user_pw {margin-bottom:8px;}
+      #username, #password {
+        width:170px;
+        height:33px;
+        line-height:33px;
+        padding-left:3px;
+        border:1px solid #aaa;
+        margin:2px 0;
+      }
+      #login_f img {vertical-align:middle;}
+      .log_btn {position:absolute; top:69px; right:13.5px;}
+      .login_close_btn {position:absolute; bottom:-40px; right:20px;}
+      .join_btn_wrap {margin:10px 0;}
+      .join_btn_wrap a {
+        padding-left:10px;
+        background:url("login_bullet.png") no-repeat;
+      }
+      .sch_id_btn {margin-left:20px;}
+      #util_menu dd{float:left;padding:0 5px;}
+      .util_first li{margin-left:10px;display:inline;}
+      #util_menu li{float:left;}
+      #util_menu{position:absolute;top:4px;right:3px;}
+      #sch_f{position:absolute;top:85px;left:375px;}
+      #keyword{
+        border:2px solid #5778ff;
+        height:27px;
+        line-height:27px;
+        width:295px;
+        background:url("sch_guide.png") no-repeat;
+        padding-left:5px;
+      }
+        .hide {
+        position:absolute;
+        left:-9999px;
+        width:0;
+        height:0;
+        overflow:hidden;
+        text-indent:-9999px;
+        }
+    </style>
+</head>
+<body>
+    <dl id="util_menu">
+        <dt class="hide">유틸 메뉴</dt>
+        <dd class="util_first">
+          <ul>
+            <li class="login_wrap">
+              <a href="#">
+              </a>
+              <form action="" method="POST" name="log_f" id="login_f">
+                {% csrf_token %}
+                <fieldset>
+                  <legend>로그인</legend>
+                  <p class="username">
+                     <input type="text" name="username" id="username" placeholder="ID" />
+                  </p>
+                  <p class="password">
+                     <input type="password" name="password" id="password" placeholder="Password" /></p>
+                  <p>
+                     <input type="checkbox" name="save_id" id="save_id" />
+                     <label for="save_id"> 비밀번호 저장</label>
+                  </p>
+                  <p class="log_btn">
+                     <input type="image" src="{% static 'img/로그인버튼.png' %}" width="90" height="90" alt="로그인버튼"/>
+                  </p>
+                  <p class="join_btn_wrap">
+                      <a href="#">회원가입</a>
+                      <a href="#" class="sch_id_btn">아이디/비밀번호 찾기</a>
+                  </p>
+                  <p class="login_close_btn">
+                      <a href="#">
+                      <img src="{% static 'img/CLOSE.png' %}" width="50" height="17" alt="닫기버튼" />
+                      </a>
+                  </p>
+                  <a href="{% provider_login_url 'kakao' %}" class="btn" id="kakao_login">
+                    <img src="{% static 'img/kakao_login_medium_narrow.png' %}" alt="kakao_image_btn" />
+                  </a>
+                
+                </fieldset>
+              </form>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+      <!--
+      <div id="relSite_wrap">
+        <form action="#" method="get" name="rel_f">
+          <fieldset>
+            <legend>관련 사이트 이동</legend>
+            <select name="rel_select">
+              <option value="#">Abcdefg</option>
+              <option value="#">Hijklmnop</option>
+              <option value="#">Qrstuvwxyz</option>
+            </select>
+            <input type="image" src="rel_site_btn.png" alt="관련 사이트 이동" />
+          </fieldset>
+        </form>
+      </div>
+      -->
+</body>
+</html>
